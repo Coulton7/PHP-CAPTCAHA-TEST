@@ -1,4 +1,4 @@
-<?php ini_set('display_errors', 'on'); error_reporting(E_ALL);
+<?php
 
 /**
  * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
@@ -45,7 +45,7 @@
  */
 
 // Remove the "//" from the following line for debugging problems
-// error_reporting(E_ALL); ini_set('display_errors', 1);
+ error_reporting(E_ALL); ini_set('display_errors', 1);
 
 require_once dirname(__FILE__) . '/securimage.php';
 
