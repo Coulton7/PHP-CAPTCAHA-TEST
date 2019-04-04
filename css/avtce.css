@@ -7,7 +7,6 @@ body,td,th {
 }
 body {
 	background-color: #005985;
-	background-image: url(../images/top-background.png);
 	background-repeat: no-repeat;
 	margin-left: 0px;
 	margin-top: 0px;
@@ -49,7 +48,6 @@ body {
 .inputPanel {
 	background-attachment: fixed;
 	background-color: #005985;
-	background-image: url(../images/lower-bg.png);
 	background-repeat: no-repeat;
 	background-position: 50% 0px;
 	width: 100%;
@@ -129,8 +127,6 @@ body {
 
 .lowerPanel {
 	background-attachment: fixed;
-	background-color: #005985;
-	background-image: url(../images/lower-bg.png);
 	background-repeat: no-repeat;
 	background-position: 50% 0px;
 	width: 100%;
