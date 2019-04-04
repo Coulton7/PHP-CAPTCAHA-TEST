@@ -72,7 +72,7 @@ $img = new Securimage();
 
 
 
-$img->show();  // outputs the image and content headers to the browser
+$img->show('./backgrounds/code-bg.png');  // outputs the image and content headers to the browser
 // alternate use:
 $img->show( './backgrounds/code-bg.png' );
 ?>
