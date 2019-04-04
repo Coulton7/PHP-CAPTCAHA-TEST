@@ -4,12 +4,12 @@ error_reporting(0);
 $file_dir = "./filerepository/";
 
 //DONT CHANGE ANYTHING BELOW HERE--------------------------------------------------------------------------------------------------------------------
-header('Content-Type: text/html; charset=iso-8859-1'); 
+header('charset=UTF-8');
 //$userDoc = $file_dir.$_POST['prefix'].$_POST['set1'].$_POST['set2'].$_POST['set3'].".doc";
 $userDoc = $file_dir.$_POST['prefix'].$_POST['set1'].$_POST['set2'].$_POST['set3'];
 //echo $userDoc;
 //Captcha Check Start
-require_once dirname(__FILE__) . '/securimage.php';
+require_once dirname(__FILE__) . '../securimage.php';
 $securimage = new Securimage();
 
 if ($securimage->check($_POST['ct_captcha']) == false) {
@@ -59,7 +59,7 @@ table.excel thead th, table.excel tbody th {
 	border-width: 0px ;
 	text-align: center;
 	vertical-align:bottom;
-	
+
 }
 table.excel tbody th {
 	text-align:center;
@@ -115,12 +115,12 @@ to decide where the text is:
 - stitch the rest together again
 - clean up with a regular expression
 *****************************************************************/
- 
 
 
 
 
-function parseWord($userDoc) 
+
+function parseWord($userDoc)
 {
     $fileHandle = fopen($userDoc, "r");
     $word_text = @fread($fileHandle, filesize($userDoc));
@@ -132,7 +132,7 @@ function parseWord($userDoc)
     for($i=2536; $i<$tam; $i++)
     {
         $line .= $word_text[$i];
-		
+
 		if( ord($word_text[$i]) != 0)
 		$lineord .= ord($word_text[$i]);
 
@@ -147,8 +147,8 @@ function parseWord($userDoc)
         }
 
         if( $nulos>1996 || strstr($lineord,"13131313"))
-        {   
-            break;  
+        {
+            break;
         }
     }
 
@@ -166,7 +166,7 @@ function parseWord($userDoc)
             continue;
         }
 
-        $new_line = ""; 
+        $new_line = "";
         for($i=0; $i<$tam; $i++)
         {
             $onechar = $thisline[$i];
@@ -201,44 +201,44 @@ function parseWord($userDoc)
             }
         }
         //troca por hiperlink
-        $new_line = str_replace("HYPERLINK" ,"<a href=",$new_line); 
-        $new_line = str_replace("\o" ,">",$new_line); 
+        $new_line = str_replace("HYPERLINK" ,"<a href=",$new_line);
+        $new_line = str_replace("\o" ,">",$new_line);
         $new_line .= "\n";
 
         //link de imagens
-        $new_line = str_replace("INCLUDEPICTURE" ,"<br><img src=",$new_line); 
-        $new_line = str_replace("\*" ,"><br>",$new_line); 
-		
-		
-		//$new_line = str_replace("&nbsp;" ," ",$new_line); 
-        $new_line = str_replace("MERGEFORMATINET" ,"",$new_line); 
+        $new_line = str_replace("INCLUDEPICTURE" ,"<br><img src=",$new_line);
+        $new_line = str_replace("\*" ,"><br>",$new_line);
+
+
+		//$new_line = str_replace("&nbsp;" ," ",$new_line);
+        $new_line = str_replace("MERGEFORMATINET" ,"",$new_line);
 		//$new_line=preg_replace('`[\r\n]+`',"\n",$new_line);
-		
+
 		//$new_line = preg_replace('/\n\s+/', "\n", $new_line );
 		//$new_line =preg_replace('#<br>(\s*<br>)+#', '<br>', $new_line);
 		//$new_line = preg_replace('~(^<br>\s*)|((?<=<br>)\s*<br>)|(<br>\s*$)~', '', $new_line);
 		//
-		
+
 
 		$outtext .= nl2br($new_line);
-		
+
 
 
  // nl2br($new_line);
-		
+
 
 
     }
 $outtext = str_replace("\r","",$outtext);
 $outtext = str_replace("\n","",$outtext);
-		
+
 $outtext = preg_replace('/(<br\s*\/?>\s*)+/', "<br>", $outtext);
 
  return $outtext;
 }
 
 
-function parseExcel($userDoc) 
+function parseExcel($userDoc)
 {
 require_once 'excel_reader2.php';
 $data1 = new Spreadsheet_Excel_Reader($userDoc);
