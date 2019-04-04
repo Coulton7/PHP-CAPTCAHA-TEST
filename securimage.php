@@ -1855,3 +1855,4 @@ class Securimage_Color
         $this->b = hexdec($blue);
     }
 }
+?>
