@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>AVT-CE Certificate Validation</title>
+<link href="css/avtce.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.2.2.pack.js"></script>
+<script type="text/javascript" src="js/animatedcollapse.js"></script>
+<script type="text/javascript" src="js/jquery.form.js "></script>
+<script type="text/javascript">
+animatedcollapse.addDiv('result', 'fade=1,speed=400,hide=1');
+animatedcollapse.init();
+$(document).ready(function() { 
+    var options = { 
+        target:        '#result',
+		beforeSubmit:  showRequest,
+		success:       showResponse
+    }; 
+    $('#form1').submit(function() { 
+	 //animatedcollapse.toggle('result');
+        $(this).ajaxSubmit(options); 
+        return false; 
+    }); 
+}); 
+function showRequest(formData, jqForm, options) { 
+animatedcollapse.hide('result');
+    var queryString = $.param(formData); 
+    return true; 
+}
+ function showResponse(responseText, statusText, xhr, $form)  { 
+ animatedcollapse.show('result');
+ document.getElementById('siimage').src = './securimage_show.php?sid=' + Math.random();
+ document.getElementById('ct_captcha').value='';
+}  
+</script>
+</head>
+<body>
+<div class="pageContainer">
+  <div class="logoDiv"><a href="../index.php"><img src="images/avt-ce-logo.png" alt="AVT - CE" width="352" height="100" border="0" /></a></div>
+  <div class="header"><a href="index.html"><img src="images/uk.png" alt="English Language" width="50" height="35" border="0" title="English Language" /></a>CE Certification - Certification Validation Service<a href="chinese-index.html"><img src="images/chinese.png" alt="Chinese Language" width="50" height="35" border="0" title="Chinese Language" /></a></div>
+  <div class="inputPanel">
+    <p>AVT provide a complimentary certification validation service to ensure manufacturers are using authentic AVT certification for their products. <br />
+    Please enter your certificate number and the on-screen security image below to retreive the certificate details.</p>
+    <div class="formBlock">
+      <p>Enter Certificate Number &amp; Security Code</p>
+      <p>&nbsp;</p>
+      <form id="form1" name="form" method="post" action="phpword.php" autocomplete="off">
+        <p>
+          <input name="prefix" type="text" class="forminput2" id="prefix" size="2" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="2" />
+          <input name="set1" type="text" class="forminput4" id="set1" size="4" maxlength="4" />
+          <input name="set2" type="text" class="forminput4" id="set2" size="4" maxlength="4" />
+          <input name="set3" type="text" class="forminput2" id="set3" size="2" maxlength="2" />
+              <img src="./securimage_show.php" alt="CAPTCHA Image" name="siimage" border="0" align="top" class="codeImg" id="siimage" style="border: none; margin-right: 5px" /><a tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = './securimage_show.php?sid=' + Math.random(); this.blur(); return false"><img src="./images/refresh.png" alt="Reload Image" onclick="this.blur()" align="top" border="0" /></a>
+    <input name="ct_captcha" type="text" class="forminput6" id="ct_captcha" size="6" maxlength="6" />
+    <input name="button" type="submit" class="button" id="button" value="Submit"/>
+        </p>
+</form>
+  </div>
+  <div class="resultPanel" id="result">
+    <div class="success">
+      <div class="notice"><img src="images/success.png" width="64" height="64" align="absmiddle" /><strong>Success!</strong> Certificate Data Found</div>
+    </div>
+
+  </div>
+  <div class="lowerPanel">
+    <div class="footer">Copyright &copy; AV Technology Limited </div>
+    
+  </div>
+</div>
+</div></body>
+</html>
