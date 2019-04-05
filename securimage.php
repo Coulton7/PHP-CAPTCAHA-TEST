@@ -1,6 +1,6 @@
 <?php
 
- error_reporting(E_ALL); ini_set('display_errors', 1); 
+ error_reporting(E_ALL); ini_set('display_errors', 1);
 
 /**
  * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
@@ -794,7 +794,7 @@ class Securimage
      */
     protected function doImage()
     {
-        if( ($this->use_transparent_text == true || $this->bgimg != '') && function_exists('imagecreatetruecolor')) {
+        if( ($this->use_transparent_text == false || $this->bgimg != '') && function_exists('imagecreatetruecolor')) {
             $imagecreate = 'imagecreatetruecolor';
         } else {
             $imagecreate = 'imagecreate';
@@ -873,7 +873,7 @@ class Securimage
 
         $alpha = intval($this->text_transparency_percentage / 100 * 127);
 
-        if ($this->use_transparent_text == true) {
+        if ($this->use_transparent_text == false) {
             $this->gdtextcolor = imagecolorallocatealpha($this->im,
                                                          $this->text_color->r,
                                                          $this->text_color->g,
