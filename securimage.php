@@ -1682,6 +1682,8 @@ class Securimage
      */
     protected function canSendHeaders()
     {
+       ob_get_clean();
+       
         if (headers_sent()) {
             // output has been flushed and headers have already been sent
             return false;
