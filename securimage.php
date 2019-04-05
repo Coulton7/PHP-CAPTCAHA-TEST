@@ -523,7 +523,7 @@ class Securimage
         $this->signature_color = $this->initColor($this->signature_color, '#616161');
 
         if (is_null($this->ttf_file)) {
-            $this->ttf_file = $this->securimage_path . '/font.ttf';
+            $this->ttf_file = $this->securimage_path . './font.ttf';
         }
 
         $this->signature_font = $this->ttf_file;
