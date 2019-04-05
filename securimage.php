@@ -1,6 +1,6 @@
 <?php
 
- error_reporting(E_ALL); ini_set('display_errors', 1); // uncomment this line for debugging
+ error_reporting(E_ALL); ini_set('display_errors', 1); 
 
 /**
  * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
@@ -1683,7 +1683,7 @@ class Securimage
     protected function canSendHeaders()
     {
        ob_get_clean();
-       
+
         if (headers_sent()) {
             // output has been flushed and headers have already been sent
             return false;
