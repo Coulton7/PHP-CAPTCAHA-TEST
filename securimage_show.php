@@ -63,7 +63,7 @@ $img = new Securimage();
 //$img->text_color      = new Securimage_Color("#EAEAEA");   // captcha text color
 //$img->num_lines       = 8;                                 // how many lines to draw over the image
 //$img->line_color      = new Securimage_Color("#0000CC");   // color of lines over the image
-//$img->image_type      = SI_IMAGE_JPEG;                     // render as a jpeg image
+$img->image_type      = SI_IMAGE_JPEG;                     // render as a jpeg image
 //$img->signature_color = new Securimage_Color(rand(0, 64),
 //                                             rand(64, 128),
 //                                             rand(128, 255));  // random signature color
